@@ -1,6 +1,22 @@
 // Curriculum page specific JavaScript
 
+// Authentication check for curriculum page
+function checkAuthentication() {
+    const savedUser = localStorage.getItem('metacognition_user');
+    const isGuest = localStorage.getItem('metacognition_guest');
+    
+    if (!savedUser && !isGuest) {
+        window.location.href = 'auth.html';
+        return false;
+    }
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Check authentication first
+    if (!checkAuthentication()) {
+        return;
+    }
     // Mobile navigation (reuse from main script)
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
