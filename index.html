@@ -52,16 +52,13 @@
                     <a href="#curriculum" class="cta-button">Start Your Journey</a>
                 </div>
                 <div class="hero-visual">
-                    <div class="brain-network">
-                        <div class="node node-1"></div>
-                        <div class="node node-2"></div>
-                        <div class="node node-3"></div>
-                        <div class="node node-4"></div>
-                        <div class="node node-5"></div>
-                        <div class="connection con-1"></div>
-                        <div class="connection con-2"></div>
-                        <div class="connection con-3"></div>
-                        <div class="connection con-4"></div>
+                    <div class="brain-container">
+                        <div class="brain-silhouette"></div>
+                        <div class="success-node node-lebron" data-person="lebron"></div>
+                        <div class="success-node node-oprah" data-person="oprah"></div>
+                        <div class="success-node node-serena" data-person="serena"></div>
+                        <div class="success-node node-cuban" data-person="cuban"></div>
+                        <div class="success-node node-mayden" data-person="mayden"></div>
                     </div>
                 </div>
             </div>
@@ -198,6 +195,25 @@
             <p>&copy; 2025 Metacognition Mastery. Empowering minds to think better.</p>
         </div>
     </footer>
+
+    <!-- Success Story Modals -->
+    <div id="success-modal" class="success-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="success-header">
+                <img id="modal-photo" class="success-photo" src="" alt="">
+                <div class="success-info">
+                    <h3 id="modal-name"></h3>
+                    <div id="modal-skill" class="success-skill"></div>
+                </div>
+            </div>
+            <div id="modal-bio" class="success-bio"></div>
+            <div class="success-connection">
+                <h4>Metacognitive Connection</h4>
+                <p id="modal-connection"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

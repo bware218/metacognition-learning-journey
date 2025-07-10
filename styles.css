@@ -299,7 +299,7 @@ body {
     box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
 }
 
-/* Brain Network Animation */
+/* Interactive Brain Visualization */
 .hero-visual {
     display: flex;
     justify-content: center;
@@ -307,90 +307,236 @@ body {
     position: relative;
 }
 
-.brain-network {
+.brain-container {
     position: relative;
-    width: 400px;
+    width: 450px;
     height: 400px;
-    filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.3));
+    filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.4));
 }
 
-.node {
+.brain-silhouette {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(96, 165, 250, 0.3) 0%, 
+        rgba(167, 139, 250, 0.3) 50%, 
+        rgba(244, 114, 182, 0.3) 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.brain-silhouette::before {
+    content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
+    top: 10%;
+    left: 15%;
+    width: 70%;
+    height: 80%;
+    background: linear-gradient(135deg, 
+        rgba(96, 165, 250, 0.2) 0%, 
+        rgba(167, 139, 250, 0.2) 50%, 
+        rgba(244, 114, 182, 0.2) 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: brainGlow 4s ease-in-out infinite;
+}
+
+.brain-silhouette::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    width: 25%;
+    height: 30%;
+    background: linear-gradient(135deg, 
+        rgba(244, 114, 182, 0.4) 0%, 
+        rgba(167, 139, 250, 0.4) 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: brainGlow 4s ease-in-out infinite reverse;
+}
+
+@keyframes brainGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.success-node {
+    position: absolute;
+    width: 24px;
+    height: 24px;
     background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
     border-radius: 50%;
-    box-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
-    animation: pulse 3s infinite ease-in-out;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: successPulse 3s infinite ease-in-out;
+    z-index: 10;
 }
 
-.node-1 { top: 20%; left: 50%; animation-delay: 0s; }
-.node-2 { top: 40%; left: 20%; animation-delay: 0.5s; }
-.node-3 { top: 40%; right: 20%; animation-delay: 1s; }
-.node-4 { bottom: 30%; left: 30%; animation-delay: 1.5s; }
-.node-5 { bottom: 30%; right: 30%; animation-delay: 2s; }
-
-.connection {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(96, 165, 250, 0.8), 
-        rgba(167, 139, 250, 0.8), 
-        transparent
-    );
-    animation: flow 4s infinite ease-in-out;
+.success-node:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 30px rgba(96, 165, 250, 1);
+    border-color: #ffffff;
 }
 
-.con-1 {
-    top: 25%;
-    left: 35%;
-    width: 30%;
-    transform: rotate(45deg);
-    animation-delay: 0s;
+.success-node.active {
+    background: linear-gradient(135deg, #f472b6 0%, #a78bfa 100%);
+    box-shadow: 0 0 25px rgba(244, 114, 182, 0.9);
 }
 
-.con-2 {
-    top: 35%;
-    left: 25%;
-    width: 50%;
-    transform: rotate(-45deg);
-    animation-delay: 1s;
-}
+/* Anatomical positioning on brain */
+.node-lebron { top: 15%; left: 45%; animation-delay: 0s; } /* Frontal cortex - strategic planning */
+.node-oprah { top: 25%; left: 20%; animation-delay: 0.6s; } /* Left temporal - communication/empathy */
+.node-serena { top: 35%; right: 15%; animation-delay: 1.2s; } /* Motor cortex - performance */
+.node-cuban { bottom: 25%; left: 25%; animation-delay: 1.8s; } /* Decision-making center */
+.node-mayden { bottom: 20%; right: 35%; animation-delay: 2.4s; } /* Creative/visual cortex */
 
-.con-3 {
-    bottom: 35%;
-    left: 35%;
-    width: 30%;
-    transform: rotate(-45deg);
-    animation-delay: 2s;
-}
-
-.con-4 {
-    bottom: 35%;
-    right: 35%;
-    width: 30%;
-    transform: rotate(45deg);
-    animation-delay: 3s;
-}
-
-@keyframes pulse {
+@keyframes successPulse {
     0%, 100% { 
         transform: scale(1); 
-        opacity: 0.8;
-        box-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+        opacity: 0.9;
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.8);
     }
     50% { 
-        transform: scale(1.4); 
+        transform: scale(1.1); 
         opacity: 1;
-        box-shadow: 0 0 40px rgba(96, 165, 250, 0.9);
+        box-shadow: 0 0 30px rgba(96, 165, 250, 1);
     }
 }
 
-@keyframes flow {
-    0% { opacity: 0; transform: scaleX(0); }
-    50% { opacity: 1; transform: scaleX(1); }
-    100% { opacity: 0; transform: scaleX(0); }
+/* Success Story Modal */
+.success-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.success-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: rgba(15, 15, 35, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.3s ease;
+}
+
+.success-modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #f472b6;
+}
+
+.success-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.success-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(96, 165, 250, 0.5);
+    object-fit: cover;
+}
+
+.success-info h3 {
+    color: #f8fafc;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.success-skill {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.success-bio {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.success-connection {
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.success-connection h4 {
+    color: #60a5fa;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.success-connection p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .brain-container {
+        width: 350px;
+        height: 300px;
+    }
+    
+    .success-node {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .modal-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+    
+    .success-header {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 /* About Section */
